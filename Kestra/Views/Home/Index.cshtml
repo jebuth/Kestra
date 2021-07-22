@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+@model Kestra.ViewModels.HomeViewModel
+
+<div class="container">
+    @*begin form*@
+    <form asp-action="Index" method="post">
+        <div class="col-md-4 container">
+
+            <div class="form-group">
+                <label class="form-label">Ticker</label>
+                <select class="form-control" asp-for="selectedTickerId" required>
+                    @foreach (var ticker in Model.Tickers)
+                    {
+                        <option value="@ticker.Id">@ticker.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-4 container">
+            <div class="form-group">
+                <label class="form-label">Quantity</label>
+                <input type="number" class="form-control" asp-for="selectedQuantity" required min="1" max="1000000"/>
+            </div>
+        </div>
+
+        <div class="col-md-4 container">
+            <div class="form-group">
+                <div class="row">
+                    <div class="form-check">
+                        <div class="col-md-6">
+                            <input asp-for="selectedOrderTypeId" type="radio" class="form-check-input" value="1" selected required />
+                            <label class="form-label">Buy</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input asp-for="selectedOrderTypeId" type="radio" class="form-check-input" value="2" />
+                            <label class="form-label">Sell</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 container">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+        
+
+    </form>
+</div>
+
+
+
+
